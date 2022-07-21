@@ -1,3 +1,14 @@
+
+-- Design a database for a Jira application
+-- Project
+-- - Task
+-- - Comment
+-- - Assignee
+-- - Description
+-- - Workflow
+-- Discussion on 31 March 2022
+
+
 USE master;
 GO
 
@@ -439,7 +450,7 @@ BEGIN
 	SELECT TenantID, UserID, UserName, ConnectionKey, DBName FROM AppCredential WHERE UserName = @UserName AND Password = @Password COLLATE Latin1_General_bin
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[GetAllIssues]
 @TenantID AS NUMERIC,
@@ -456,7 +467,7 @@ BEGIN
 
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[GetIssueByKey]
 @TenantID AS NUMERIC,
@@ -473,7 +484,7 @@ BEGIN
 
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[GetAllComments]
 @TenantID AS NUMERIC,
@@ -494,7 +505,7 @@ BEGIN
 
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[SaveIssue]
 @TenantID AS NUMERIC,
@@ -544,7 +555,7 @@ BEGIN
 
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[GetProjectID]
 @TenantID AS NUMERIC,
@@ -555,6 +566,7 @@ BEGIN
 	SELECT ProjectID FROM ProjectAssignment WHERE TenantID = @TenantID AND UserID = @UserID
 	SET NOCOUNT OFF
 END
+GO
 
 CREATE PROCEDURE [dbo].[AddComment]
 @TenantID AS NUMERIC,
@@ -571,7 +583,7 @@ BEGIN
 	RETURN 0
 	SET NOCOUNT OFF
 END
-
+GO
 
 CREATE PROCEDURE [dbo].[GetProjectInfo]
 @TenantID AS NUMERIC,
@@ -589,12 +601,12 @@ BEGIN
 
 	SET NOCOUNT OFF
 END
-
+GO
 
 ------------------------------------- Some useful DML Script --------------------------------------
 UPDATE Issue
-SET Title = 'Issue Title 03 - Lorem Ipsum is simply dummy text of the printing and typesetting industry' 
-WHERE IssueID = 3
+SET Title = 'Issue Title 01 - Lorem Ipsum is simply dummy text of the printing and typesetting industry' 
+WHERE IssueID = 1
 
 UPDATE Issue
 SET Description = 'Issue Description 01. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.' 
