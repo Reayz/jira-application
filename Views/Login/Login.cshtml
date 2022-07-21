@@ -1,0 +1,56 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jira Application - Welcome</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css">
+    <link rel="stylesheet" href="~/JiraApplication.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+
+</head>
+<body>
+    <div class="loginForm">
+
+        <h2 class="text-center">Welcome</h2> <br /> 
+        <p id="wrongCred" class="text-danger">You have entered a wrong credential.</p>
+        <div class="widthFull">
+            <label>User Name: </label> <br />
+            <input id="userName" onkeyup="credentialChanged()" class="form-control" type="text" />
+        </div>
+        <div class="widthFull">
+            <label>Password: </label> <br />
+            <input id="password" onkeyup="credentialChanged()" class="form-control" type="password" /> <br />
+        </div>
+        <div>
+            <button class="LogInBtn widthFull btn btn-primary btn-lg" onclick="logInBtnClicked()">Log In</button>
+        </div>
+
+    </div>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.3.8/purify.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    <script src="~/js/login.js" asp-append-version="true"></script>
+
+    <script>
+        var verifyUserURl = '@Url.Action("VerifyUser", "Login")';
+        var dashboardURL = '@Url.Action("Dashboard", "Home")';
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+﻿#wrongIssueNumber {
+    display: none;
+}
+
+.leftPanel {
+    float: left;
+}
+
+.rightPanel {
+    float: right;
+    padding: 15px;
+    overflow: hidden;
+    position: fixed;
+    right: 50px;
+    height: 100%;
+    border-left: 1px solid gray;
+}
+
+.issueTypeIcon {
+    font-size: 24px;
+}
+
+.issueTitle {
+    font-size: 26px;
+}
+
+.mainContent {
+    padding: 5px;
+}
+
+.description-textbox {
+    height: 280px;
+}
+
+.create-issue-modal-main {
+    width: 900px;
+    left: -190px;
+    top: 50px;
+}
+
+select {
+    width: 100%;
+}
+
+.createIssueModalBtn {
+    padding: 5px;
+}
+
+.addCommentBtn {
+    float: right;
+    margin-top: 5px;
+    padding: 5px;
+}
+
+.comment-textbox {
+    height: 100px;
+}
+
+.newComment {
+    height: 112px;
+}
+
+.editIssueBtn {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    padding: 7px;
+}
+
+.commentTitle {
+    font-size: 20px;
+    font-weight: bold;
+}

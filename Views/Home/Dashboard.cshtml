@@ -1,0 +1,62 @@
+﻿@model JiraApplication.Models.Dashboard
+
+<link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+
+<center><h2>All Issues for project - @ViewBag.ProjectName</h2></center>
+
+<div class="table-head-fixed referral-attachment-table margin-10">
+    <div class="common-table tbl-header margin-top-10">
+        <table class="table" cellpadding="0" cellspacing="0" border="0">
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Key</th>
+                    <th>Title</th>
+                    <th>Priority</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var issue in Model.Issues)
+                {
+                    <tr>
+                        <td>
+                            @if(issue.IssueType == "Feature")
+                            {
+                               <a><i class="dashboardIcon bi-bookmark-plus-fill" title="Feature"></i></a>
+                            }
+                            else if(issue.IssueType == "Bug")
+                            {
+                                <a><i class="dashboardIcon bi-bug-fill" title="Bug"></i></a>
+                            }
+                        </td>
+                        <td>@Html.ActionLink(issue.IssueNo, "OpenIssue", "Issue", new { issueKey=issue.IssueNo})</td>
+                        <td>@Html.ActionLink(issue.Title, "OpenIssue", "Issue", new { issueKey=issue.IssueNo})</td>
+                        <td>
+                            @if(issue.Priority == "Blocker")
+                            {
+                               <a><i class="dashboardIcon bi-dash-circle-fill" title="Blocker"></i></a>
+                            }
+                            else if(issue.Priority == "High")
+                            {
+                                <a><i class="dashboardIcon bi-arrow-up-square-fill" title="High"></i></a>
+                            }
+                            else if(issue.Priority == "Medium")
+                            {
+                                <a><i class="dashboardIcon bi-arrow-down-right-square-fill" title="Medium"></i></a>
+                            }
+                            else if(issue.Priority == "Low")
+                            {
+                                <a><i class="dashboardIcon bi-arrow-down-square-fill" title="Low"></i></a>
+                            }
+                        </td>
+                        <td>
+                            @issue.Status
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

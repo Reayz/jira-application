@@ -1,0 +1,27 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Unauthorized</title>
+    <style>
+        p, a {
+           text-decoration: none !important;
+        }
+        p:hover, a:hover {
+            text-decoration: underline !important;
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h2>Your session has expired.</h2>
+        <p>@Html.ActionLink("Please click here for login.", "Login", "Login")</p>
+    </div>
+</body>
+</html>

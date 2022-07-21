@@ -1,0 +1,126 @@
+﻿@model Tuple<Issue, Comments>
+
+<link rel="stylesheet" href="~/css/issue.css" asp-append-version="true" />
+
+@if (Model.Item1 == null)
+{
+    <div class="col-4 align-content-center">
+        <label>Please enter a issue number</label> <br />
+        <input id="issueNumber" class="form-control" onkeyup="issueNumberChanged()" maxlength="100" placeholder="Enter issue number"/>
+        <label id="wrongIssueNumber" class="text-danger">Please enter a valid issue number!</label>
+        <button id="getIssueNumberBtn" class="form-control btn btn-success mt-3 p-2" onclick="getIssue()">Open Issue</button>
+    </div>
+}
+else
+{
+    <div class="col-12">
+        <div class="col-9 leftPanel">
+            <div class="mainContent">
+
+                <div class="">
+                    @if(Model.Item1.IssueType == "Feature")
+                    {
+                       <a><i class="issueTypeIcon bi-bookmark-plus-fill" title="Issue Type: Feature"></i></a>
+                    }
+                    else if(Model.Item1.IssueType == "Bug")
+                    {
+                        <a><i class="issueTypeIcon bi-bug-fill" title="Issue Type: Bug"></i></a>
+                    }
+
+                    <b class="issueTitle">@Model.Item1.Title</b>
+                </div>
+
+                <p>@Model.Item1.Description</p>
+              
+            </div>
+            <div class="commentSection">
+
+                <h4>All Comments</h4>
+
+                <div class="newComment">
+                    <textarea  id="commentTextbox" class="comment-textbox form-control"></textarea>
+                    <button class="addCommentBtn btn btn-secondary" onclick="addCommentBtnClicked()" type="button">Add a comment</button>
+                </div>
+
+                <div class="oldComment">
+                    @Html.Partial("Comments", Model.Item2)
+                </div>
+
+                
+            </div>
+        </div>
+
+        <div class="col-3 rightPanel">
+            <strong>Status: </strong>
+            <label>@Model.Item1.Status</label> <br /> <br />
+            <strong>Priority: </strong>
+            @if(Model.Item1.Priority == "Blocker")
+            {
+                <a><i class="dashboardIcon bi-dash-circle-fill"></i></a>
+            }
+            else if(Model.Item1.Priority == "High")
+            {
+                <a><i class="dashboardIcon bi-arrow-up-square-fill"></i></a>
+            }
+            else if(Model.Item1.Priority == "Medium")
+            {
+                <a><i class="dashboardIcon bi-arrow-down-right-square-fill"></i></a>
+            }
+            else if(Model.Item1.Priority == "Low")
+            {
+                <a><i class="dashboardIcon bi-arrow-down-square-fill"></i></a>
+            }
+            <label>@Model.Item1.Priority</label> <br /> <br />
+            <strong>Assignee: </strong>
+            <a><i class="bi-person-circle"></i></a>
+            @if(string.IsNullOrEmpty(Model.Item1.Assignee))
+            {
+                <label>None</label>
+            }
+            else
+            {
+                <label>@Model.Item1.Assignee</label>
+            }
+            <br /> <br />
+            <strong>Sprint: </strong>
+            @if(string.IsNullOrEmpty(Model.Item1.SprintName))
+            {
+                <label>None</label>
+            }
+            else
+            {
+                <label>@Model.Item1.SprintName</label>
+            }
+            
+            <br /> <br />
+            <strong>Created By: </strong>
+            <a><i class="bi-person-circle"></i></a>
+            <label>@Model.Item1.CreatedBy</label> <br /> <br />
+            <strong>Created Date: </strong>
+            <label>@Model.Item1.CreatedDate.ToShortDateString()</label> <br /> <br />
+
+            @if(!string.IsNullOrEmpty(Model.Item1.ModifiedBy))
+            {
+                <strong>Modified By: </strong>
+                <a><i class="bi-person-circle"></i></a>
+                <label>@Model.Item1.ModifiedBy</label> <br /> <br />
+                <strong>Modified Date: </strong>
+                <label>@Model.Item1.ModifiedDate.ToShortDateString()</label> <br /> <br />   
+            }
+
+            <input id="issueID" value="@Model.Item1.IssueID" type="hidden" />
+            <input id="issueKey" value="@Model.Item1.IssueNo" type="hidden" />
+
+            <div class="editIssueBtnDiv">
+                <button class="editIssueBtn btn btn-primary" onclick="editIssueBtnClicked()" type="button">Edit Issue</button>
+            </div>
+        </div>
+    </div>
+}
+
+<script src="~/js/issue.js" asp-append-version="true"></script>
+
+<script>
+    var verifyIssueNumberURl = '@Url.Action("VerifyIssueNumber", "Issue")';
+    var openIssueURL = '@Url.Action("OpenIssue", "Issue")';
+</script>

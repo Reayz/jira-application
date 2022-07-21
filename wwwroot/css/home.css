@@ -1,0 +1,11 @@
+﻿td a {
+    text-decoration: none !important;
+}
+
+ td a:hover {
+    text-decoration: underline !important;
+}
+
+.dashboardIcon {
+    font-size: 20px;
+}

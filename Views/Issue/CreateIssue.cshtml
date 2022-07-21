@@ -1,0 +1,63 @@
+﻿@model JiraApplication.Models.Issue
+
+<link rel="stylesheet" href="~/css/issue.css" asp-append-version="true" />
+
+<div class="modal fade common-modal" id="create-issue-modal" role="dialog" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content create-issue-modal-main">
+            <div class="modal-header custom-movable-cursor">
+                @if(string.IsNullOrEmpty(Model.IssueNo))
+                {
+                    <h4 class="modal-title">Create Issue</h4>
+                }
+                else
+                {
+                    <h4 class="modal-title">Edit Issue</h4>
+                }
+            </div>
+            <div class="modal-body">
+                <div class="widthFull">
+                    <label>Type: </label> <br />
+                    <select id="issueType">
+                      <option selected="@(Model.IssueType == "Feature" ? "selected" : null)" value="1">Feature</option>
+                      <option selected="@(Model.IssueType == "Bug" ? "selected" : null)" value="2">Bug</option>
+                    </select>
+                </div>
+                <div class="widthFull">
+                    <label>Title: </label> <br />
+                    <input id="title" value="@Model.Title" class="form-control" />
+                </div>
+
+                <div class="widthFull">
+                    <label>Description: </label> <br />
+                    <textarea id="description" class="description-textbox form-control">@Model.Description</textarea>
+                </div>
+
+                <div class="widthFull">
+                    <label>Priority: </label> <br />
+                    <select id="priority">
+                      <option selected="@(Model.Priority == "Blocker" ? "selected" : null)" value="1">Blocker</option>
+                      <option selected="@(Model.Priority == "High" ? "selected" : null)" value="2">High</option>
+                      <option selected="@(Model.Priority == "Medium" ? "selected" : null)" value="3">Medium</option>
+                      <option selected="@(Model.Priority == "Low" ? "selected" : null)" value="4">Low</option>
+                    </select>
+                </div>
+
+                <input id="exitingIssueID" value="@Model.IssueID" type="hidden" />
+            </div>
+            <div class="modal-footer">
+                 <button class="closeIssueBtn btn btn-secondary createIssueModalBtn" onclick="closeIssueBtnClicked()" type="button">Close</button>
+                 @if(string.IsNullOrEmpty(Model.IssueNo))
+                 {
+                    <button class="saveIssueBtn btn btn-primary createIssueModalBtn" onclick="saveIssueBtnClicked()" type="button">Create</button>
+                }
+                else
+                {
+                    <button class="saveIssueBtn btn btn-primary createIssueModalBtn" onclick="saveIssueBtnClicked()" type="button">Edit</button>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="~/js/issue.js" asp-append-version="true"></script>
