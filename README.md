@@ -4,7 +4,7 @@ Jira Application with following technologies
 - ASP.NET Core 6.0
 - SQL Server (T-SQL)
 - Dapper (ORM)
-- Store Proceure
+- Store Procedure
 - Multi tenant database architecture
 - Layer based (Application layer, Repository layer)
 - Session check on every page
@@ -17,10 +17,11 @@ Jira Application with following technologies
 
 This jira application has following feature
 - Login user to jira project
-- After login user will see different Jira Project assigned to them
+- After login user will see different project assigned to them
 - Jira Dashboard
 - Create Issue
 - View Issue
 - Edit Issue
 - Add Comment
 
+ 
