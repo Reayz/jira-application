@@ -1,4 +1,5 @@
-# Jira-App-With-ASP.NET-Core-6.0-Dapper-Store-Proceure
+# Jira-Application
+A practice project
 
 Jira Application with following technologies
 - ASP.NET Core 6.0
